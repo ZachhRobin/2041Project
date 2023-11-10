@@ -2,6 +2,7 @@
 %token <string> COMMENT
 %token <string> AXIOM
 %token EOF
+%token <int> TESTFORGITHUB
 %start main
 %type <string list> main
 %%
