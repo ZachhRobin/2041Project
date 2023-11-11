@@ -1,12 +1,16 @@
+%{
+    open Ast
+%}
+
+
 %token <string> IDENT
 %token LPAREN
 %token RPAREN
 %token EOF
 %start main
-%type <string list> main
+%type <expression list> main
 %%
 main:
-| line EOF { $1 }
-line:
-| { [] }
-| WORD line { $1 :: $2 }
+| e = expression ; EOF { [e] }
+expression:
+| nm = IDENT { Identifier nm }
