@@ -13,4 +13,6 @@
 main:
 | e = expression ; EOF { [e] }
 expression:
+| LPAREN ; e = expression ; RPAREN { e }
 | nm = IDENT { Identifier nm }
+|e1 = expression; e2 = expression {Application (e1,e2) }
