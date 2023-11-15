@@ -4,6 +4,14 @@ type expression =
   | Number of int
   | Application of expression * expression
 
+type ident = string
+type equality = expression * expression
+type arguments = (string * string) list
+
+type declaration =
+  |Letprove of string * arguments * expression
+  |Letrecprove of string * arguments * expression
+
 and statement =
   | Declaration of ident * expression
   | Assignment of ident * expression
@@ -13,5 +21,3 @@ and hint =
   | Axiom
   | Induction of string
   | Direct
-
-  and ident = string
