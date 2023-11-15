@@ -1,8 +1,10 @@
 type expression =
   | Identifier of string
+  | Number of int
   | Application of expression * expression
 
-type hint =
-  |Axiom
-  |Induction of string
-  |Direct
+and statement =
+  | Declaration of ident * expression
+  | Assignment of ident * expression
+
+and ident = string
