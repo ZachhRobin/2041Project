@@ -18,6 +18,8 @@ rule token = parse
  | _ { raise (SyntaxError ("Unexpected char: " ^ Lexing.lexeme lexbuf)) }
  | eof { EOF }
 
- and level = comment 
+ and comment level =  parse
  | "(*" { comment (level + 1) lexbuf }
- | "*)" { if level = 0 then parse lexbuf else comment (level -1) lexbuf }
+ | "*)" { if level = 0 then token lexbuf else comment (level -1) lexbuf }
+ | [' ' '\t'] { token lexbuf }
+ | _ { comment level lexbuf }
