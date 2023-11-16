@@ -2,6 +2,8 @@ type expression =
   | Identifier of string
   | Application of expression * expression
   | Equality of expression * expression
+  | Cons of expression * expression
+  | Let of expression
 
 (*and equality = Equality of expression * expression*)
 type arguments = (string * string) list

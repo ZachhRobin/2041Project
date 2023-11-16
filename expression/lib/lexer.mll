@@ -13,12 +13,13 @@ rule token = parse
  | ')' {RPAREN}
  | "(*" {comment 0 lexbuf}
  | "*)" {RCOMM}
+ | ":" {CONS}
  | '=' {EQUALS}
+ | "let" {LET}
  | _ { raise (SyntaxError ("Unexpected char: " ^ Lexing.lexeme lexbuf)) }
  | eof { EOF }
 
 and comment level =  parse
  | "(" { comment (level + 1) lexbuf }
  | ")" { if level = 0 then token lexbuf else comment (level -1) lexbuf }
- | [' ' '\t'] { comment lexbuf }
  | _ { comment level lexbuf }
