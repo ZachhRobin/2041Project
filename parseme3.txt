@@ -1,1 +1,1 @@
-(*prove*) foo x (bar x y) (bar2 y z) hello yes please
+(*prove*) foo x (bar x y) == (bar2 y z)

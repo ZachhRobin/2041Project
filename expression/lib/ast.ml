@@ -1,7 +1,7 @@
 type expression =
   | Identifier of string
   | Application of expression * expression
-  |Equality of expression * expression
+  | Equality of expression * expression
 
 (*and equality = Equality of expression * expression*)
 type arguments = (string * string) list

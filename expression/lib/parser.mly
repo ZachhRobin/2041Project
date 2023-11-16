@@ -7,6 +7,7 @@
 %token RCOMM
 %token LPAREN
 %token RPAREN
+%token LET
 %token EOF
 %token EQUALS
 %start main

@@ -8,7 +8,7 @@ let newline = '\r' | '\n' | "\r\n"
 rule token = parse
  | [' ' '\t'] { token lexbuf }
  | newline { Lexing.new_line lexbuf; token lexbuf }
- | ['a'-'z' 'A'-'Z' '0'-'9' '_' '\'']+ as word { IDENT(word) }
+ | ['a'-'z' 'A'-'Z' '0'-'9' '_' '\'']+ as word { if word == "let" then LET else IDENT(word) }
  | '(' {LPAREN}
  | ')' {RPAREN}
  | "(*" {LCOMM} (*comment 0 lexbuf*)
