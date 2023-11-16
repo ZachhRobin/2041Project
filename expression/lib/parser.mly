@@ -12,7 +12,6 @@
 %start main
 %type <expression list> main
 %type <expression> expression
-%type <equality> equality
 %%
 main:
 | e = expression ; EOF { [e] }
@@ -22,7 +21,5 @@ expression:
 |LCOMM; txt = IDENT; RCOMM; {Identifier txt}
 |e1 = expression; nm = IDENT {Application (e1,Identifier nm) }
 |e1 = expression; LPAREN; e2 = expression ; RPAREN {Application (e1, e2) }
-|e = equality {( e )}
-
-equality:
 |e1 = expression; EQUALS; e2 = expression {Equality (e1, e2)}
+
