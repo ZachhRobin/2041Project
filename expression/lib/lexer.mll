@@ -8,18 +8,18 @@ let newline = '\r' | '\n' | "\r\n"
 rule token = parse
  | [' ' '\t'] { token lexbuf }
  | newline { Lexing.new_line lexbuf; token lexbuf }
- | ['a'-'z' 'A'-'Z' '0'-'9' '_' '\'']+ as word { IDENT(word) }
- | "(*prove*)" {PROVE}
- | "(*hint: axiom" {AXIOM}
+ | ['a'-'z' 'A'-'Z' '0'-'9' '_' '\'']+ as word { if word == "let" then LET else IDENT(word) }
  | '(' {LPAREN}
  | ')' {RPAREN}
- | "(*" {comment 0 lexbuf }
+ | "(*" {comment 0 lexbuf}
  | "*)" {RCOMM}
+ | ":" {CONS}
+ | '=' {EQUALS}
+ | "let" {LET}
  | _ { raise (SyntaxError ("Unexpected char: " ^ Lexing.lexeme lexbuf)) }
  | eof { EOF }
 
- and comment level =  parse
- | "(*" { comment (level + 1) lexbuf }
- | "*)" { if level = 0 then token lexbuf else comment (level -1) lexbuf }
- | [' ' '\t'] { token lexbuf }
+and comment level =  parse
+ | "(" { comment (level + 1) lexbuf }
+ | ")" { if level = 0 then token lexbuf else comment (level -1) lexbuf }
  | _ { comment level lexbuf }

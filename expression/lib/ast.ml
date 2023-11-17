@@ -1,17 +1,18 @@
 type expression =
-  | Identifier of ident
-  | String of string
-  | Number of int
+  | Identifier of string
   | Application of expression * expression
+  | Equality of expression * expression
+  | Cons of expression * expression
+  | Let of expression
 
-and statement =
-  | Declaration of ident * expression
-  | Assignment of ident * expression
-  | If_Else of expression * statement list * statement list 
+(*and equality = Equality of expression * expression*)
+type arguments = (string * string) list
+
+type declaration =
+  |Letprove of string * arguments * expression
+  |Letrecprove of string * arguments * expression
 
 and hint = 
   | Axiom
   | Induction of string
   | Direct
-
-  and ident = string
