@@ -11,6 +11,7 @@
 %token EOF
 %token EQUALS
 %token CONS
+%token PROVE
 %start main
 %type <expression list> main
 %type <expression> expression
@@ -26,4 +27,4 @@ expression:
 |e1 = expression; EQUALS; e2 = expression {Equality (e1, e2)}
 |e1 = expression; CONS; e2 = expression {Cons(e1,e2)}
 |LET; e = expression {Let e}
-
+|PROVE; e = expression {Prove e}

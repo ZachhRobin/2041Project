@@ -4,6 +4,7 @@ type expression =
   | Equality of expression * expression
   | Cons of expression * expression
   | Let of expression
+  | Prove of expression
 
 (*and equality = Equality of expression * expression*)
 type arguments = (string * string) list
@@ -11,6 +12,7 @@ type arguments = (string * string) list
 type declaration =
   |Letprove of string * arguments * expression
   |Letrecprove of string * arguments * expression
+  |Prove of expression
 
 and hint = 
   | Axiom
