@@ -7,15 +7,14 @@ type declaration =
   |Let of equality
   |Letprove of equality
   |Prove of equality
+  | Axiom of declaration
 
 and equality = 
   |Equality of expression * expression
   |LLinkedEq of equality * expression
   |RLinkedEq of expression * equality
 
-type arguments = (string * string) list
-
-and hint = 
-  | Axiom
-  | Induction of string
-  | Direct
+(* and hint = 
+  | Axiom of declaration
+  (* | Induction of string
+  | Direct *) *)

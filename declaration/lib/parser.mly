@@ -11,6 +11,7 @@
 %token EOF
 %token EQUALS
 %token OFTYPE
+%token AXIOM
 %token PROVE
 %start main
 %type <declaration list> main
@@ -22,6 +23,7 @@ main:
 | d = list(declaration) ; EOF { d }
 declaration:
 |LET; PROVE; eq = equality {Letprove eq}
+| d = declaration; AXIOM { Axiom (d) }
 |LET; e = equality {Let e}
 |PROVE; eq = equality {Prove eq}
 expression:

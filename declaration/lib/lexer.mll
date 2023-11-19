@@ -9,7 +9,7 @@ rule token = parse
  | [' ' '\t'] { token lexbuf }
  | newline { Lexing.new_line lexbuf; token lexbuf } 
  | "(*prove*)" {PROVE}
- (* | "hint: axiom" {AXIOM} *)
+ | "(*hint: axiom *)" {AXIOM} 
  | ['a'-'z' 'A'-'Z' '0'-'9' '_' '\'']+ as word { 
     match word with 
         |"let" -> LET
