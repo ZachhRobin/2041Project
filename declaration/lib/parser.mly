@@ -10,21 +10,24 @@
 %token LET
 %token EOF
 %token EQUALS
-%token CONS
+// %token CONS
 %token PROVE
 %start main
-%type <expression list> main
+%type <declaration list> main
+%type <equality> equality
 %type <expression> expression
+%type <declaration> declaration
 %%
 main:
-| e = expression ; EOF { [e] }
+| d = declaration ; EOF { [d] }
+declaration:
+|LET; e = equality {Let e}
+|PROVE; d = declaration {Prove d}
 expression:
 | LPAREN ; e = expression ; RPAREN { e }
 | nm = IDENT { Identifier nm }
 |LCOMM; txt = IDENT; RCOMM; {Identifier txt}
 |e1 = expression; nm = IDENT {Application (e1,Identifier nm) }
 |e1 = expression; LPAREN; e2 = expression ; RPAREN {Application (e1, e2) }
-|e1 = expression; EQUALS; e2 = expression {Equality (e1, e2)}
-|e1 = expression; CONS; e2 = expression {Cons(e1,e2)}
-|LET; e = expression {Let e}
-|PROVE; e = expression {Prove e}
+equality:
+|e1 = declaration; EQUALS; e2 = expression {Equality (e1, e2)}

@@ -2,10 +2,10 @@
    I've called it expression.ml there, some will probably have called it halloween.ml.
    Names may vary, but these are the things this executable needs.
    In any case, these four definitions should be the only things you need to change. *)
-   let string_of_declaration = Expression.string_of_expression
-   let mainParser = Expression.Parser.main
-   let mainLexer = Expression.Lexer.token
-   module Parser : (sig exception Error end) = Expression.Parser
+   let string_of_declaration = Declaration.string_of_declaration
+   let mainParser = Declaration.Parser.main
+   let mainLexer = Declaration.Lexer.token
+   module Parser : (sig exception Error end) = Declaration.Parser
    (* Here are the types these things have for me,
       but I'm not stating them for ocaml because there's a good chance things are different for you:
       Parser.main : (Lexing.lexbuf -> token) -> Lexing.lexbuf -> Expression.declaration list

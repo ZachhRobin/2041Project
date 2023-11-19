@@ -1,5 +1,5 @@
 (library
- (name expression))
+ (name declaration))
 
 (menhir (modules parser))
 
