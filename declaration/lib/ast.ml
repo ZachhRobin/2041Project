@@ -5,10 +5,9 @@ type expression =
 type declaration =
   |Let of equality
   |Letprove of equality
-  (* |Equality of declaration * expression *)
   |Prove of equality
 
-and equality = Equality of declaration * expression
+and equality = Equality of expression * expression
 
 type arguments = (string * string) list
 

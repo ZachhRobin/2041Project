@@ -18,7 +18,7 @@ rule token = parse
  | ')' {RPAREN}
  | "(*" {comment 0 lexbuf}
  | "*)" {RCOMM}
- | ":" {CONS}
+ (* | ":" {CONS} *)
  | '=' {EQUALS}
  | _ { raise (SyntaxError ("Unexpected char: " ^ Lexing.lexeme lexbuf)) }
  | eof { EOF }
