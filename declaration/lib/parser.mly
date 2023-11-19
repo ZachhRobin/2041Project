@@ -21,8 +21,9 @@
 main:
 | d = declaration ; EOF { [d] }
 declaration:
+|LET; PROVE; eq = equality {Letprove eq}
 |LET; e = equality {Let e}
-|PROVE; d = declaration {Prove d}
+|PROVE; eq = equality {Prove eq}
 expression:
 | LPAREN ; e = expression ; RPAREN { e }
 | nm = IDENT { Identifier nm }

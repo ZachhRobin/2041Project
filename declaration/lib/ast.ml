@@ -4,8 +4,9 @@ type expression =
 
 type declaration =
   |Let of equality
+  |Letprove of equality
   (* |Equality of declaration * expression *)
-  |Prove of declaration
+  |Prove of equality
 
 and equality = Equality of declaration * expression
 
