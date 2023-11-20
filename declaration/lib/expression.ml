@@ -11,5 +11,4 @@ let rec string_of_expression (e : expression) =
       " " ^ (string_of_expression_with_parens e2) 
 and string_of_expression_with_parens e = match e with
     |Identifier nm -> nm
-    |Application _ -> "("^string_of_expression e ^")"
-    | Oftype (_,_) -> "(" ^ string_of_expression e ^ ")"
+    |_ -> "("^string_of_expression e ^")"
