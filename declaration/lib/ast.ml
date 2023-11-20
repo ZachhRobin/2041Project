@@ -1,3 +1,5 @@
+(* Abstract Syntax Tree. Define all types needed here, options inside datatypes that hold data *)
+
 type expression =
   | Identifier of string
   | Application of expression * expression
