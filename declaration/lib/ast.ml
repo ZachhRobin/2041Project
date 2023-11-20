@@ -16,5 +16,5 @@ and equality =
 
 (* and hint = 
   | Axiom of declaration
-  (* | Induction of string
-  | Direct *) *)
+  | Induction of string
+  | Direct *)
