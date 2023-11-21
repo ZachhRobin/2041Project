@@ -1,1 +1,0 @@
-(*d'ghkf;kghklfjn;lfjh;ldfjhldfgjh;dfgjh;l*) foo x (bar x y) = (bar2 y z)
