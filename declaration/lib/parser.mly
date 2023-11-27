@@ -15,7 +15,7 @@
 %token AXIOM
 %token PROVE
 // This declares main as something that should run
-
+%start expression_eof
 %start main
 
 //Along with main, this is where to define all of our created types created in the AST.
@@ -23,6 +23,7 @@
 %type <equality> equality
 %type <expression> expression
 %type <declaration> declaration
+%type <expression> expression_eof
 %%
 
 // This is our main rule. It's what holds the entire string as a list of declarations
@@ -52,3 +53,7 @@ equality:
 |eq = equality; EQUALS; e = expression {LLinkedEq (eq, e)}
 |e = expression; EQUALS; eq = equality {RLinkedEq (e, eq)}
 |LPAREN; eq = equality; RPAREN { eq }
+
+//End of File expression
+expression_eof:
+|e = expression; EOF {e}
