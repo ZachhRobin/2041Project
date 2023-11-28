@@ -8,7 +8,7 @@ let parse (s : string) : expression =
   let ast = Parser.expression_eof Lexer.token lexbuf in
      ast
 
-let string_of_declaration = String_of.string_of_declaration
+let string_of_declaration = Declaration.string_of_declaration
 
 let empty = []
 let singleton x y = [(x,y)]
