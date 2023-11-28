@@ -2,8 +2,8 @@
 include Ast
 include Declaration
 
-module Parser = parser 
-module Lexer = lexer
+module Parser = Parser 
+module Lexer = Lexer
 
 let parse_expression (s:string) : expression = 
   let lexbuf = Lexing.from_string s in 
