@@ -12,9 +12,11 @@ let string_of_declaration = String_of.string_of_declaration
 
 let empty = []
 let singleton x y = [(x,y)]
-let merge s1 s2 = match s1 with
-  | [] -> Some s2 (* this case is actually correct, but it shouldn't be needed once the other one is fixed *)
-  | _ -> if s2 = [] then Some s1 else if Some s1 = Some s2 then Some s1 else failwith "non-empty"
+let merge s1 s2 = match s1, s2 with
+  | [], [] -> None (* this case is actually correct, but it shouldn't be needed once the other one is fixed *)
+  | e, [] -> Some e
+  | [], e -> Some e
+  | e1, e2 -> if e1 = e2 then Some e1 else failwith "non-empty" 
 
 
   (* check if both are empty, check if s1 is empty, check if non-empty and equal, if not equal raise error, if equal return some*)
